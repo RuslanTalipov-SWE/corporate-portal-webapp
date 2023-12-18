@@ -4,15 +4,9 @@ import { buttonVariants } from "@/components/ui/Button";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
-
-export const metadata: Metadata = {
-  title: "Breadit",
-  description: "A Reddit clone built with Next.js and TypeScript.",
-};
 
 const Layout = async ({
   children,

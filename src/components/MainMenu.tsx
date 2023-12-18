@@ -78,13 +78,6 @@ export const MainMenu = () => {
         <DropdownMenuItem asChild>
           <button>My Communities</button>
         </DropdownMenuItem>
-        <div className="dropdown-subscribed-communities">
-          {subscribedCommunities.map((community) => (
-            <DropdownMenuItem key={community.id} asChild>
-              <a href={`/r/${community.name}`}>{community.name}</a>{" "}
-            </DropdownMenuItem>
-          ))}
-        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
