@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
+import { HomeIcon } from "lucide-react";
 
 interface Community {
   id: number;
@@ -23,17 +25,18 @@ const AllCommunitiesPage = () => {
   );
 
   return (
-    <div className="container mx-auto my-8 p-4">
-      <h1 className="text-2xl font-bold mb-4">Все сообщества</h1>
-      <ul className="list-disc pl-5">
-        {sortedCommunities.map((community) => (
-          <li key={community.id}>
-            {/* Updated usage of Link component */}
-            <Link href={`/r/${community.name}`}>{community.name}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <h1 className="font-bold text-3xl md:text-4xl">Все сообщества</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
+        <ul className="list-disc pl-5">
+          {sortedCommunities.map((community) => (
+            <li key={community.id}>
+              <Link href={`/r/${community.name}`}>{community.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

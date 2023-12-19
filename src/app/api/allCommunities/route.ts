@@ -1,4 +1,3 @@
-// src/app/api/subreddits.ts
 import { db } from "@/lib/db"; // Import your database instance
 
 export async function GET() {

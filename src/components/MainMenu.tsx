@@ -1,41 +1,12 @@
-// import { Menu } from "lucide-react";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "./ui/DropdownMenu";
-
-// export const MainMenu = () => {
-//   return (
-//     <DropdownMenu>
-//       <DropdownMenuTrigger asChild>
-//         <button>
-//           <Menu className="h-6 w-6" />
-//         </button>
-//       </DropdownMenuTrigger>
-//       <DropdownMenuContent className="bg-white" align="end">
-//         <DropdownMenuItem asChild>
-//           <a href="/r/create">Create Community</a>
-//         </DropdownMenuItem>
-//         <DropdownMenuItem asChild>
-//           <a href="/allCommunities">All Communities</a>
-//         </DropdownMenuItem>
-//         <DropdownMenuItem asChild>
-//           <a href="/my-communities">My Communities</a>
-//         </DropdownMenuItem>
-//       </DropdownMenuContent>
-//     </DropdownMenu>
-//   );
-// };
-
 "use client";
 import React, { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
+import { Menu, Home, Plus, FileStack } from "lucide-react";
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/DropdownMenu";
 
@@ -51,7 +22,7 @@ export const MainMenu = () => {
   >([]);
 
   useEffect(() => {
-    fetch("/api/subscribedCommunities") // Corrected API endpoint
+    fetch("/api/mySubreddits")
       .then((response) => response.json())
       .then((data) => setSubscribedCommunities(data))
       .catch((error) =>
@@ -66,18 +37,45 @@ export const MainMenu = () => {
           <Menu className="h-6 w-6" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white" align="end">
+
+      <DropdownMenuContent
+        className="bg-white max-h-65 overflow-y-auto"
+        align="end"
+      >
         <DropdownMenuItem asChild>
-          <a href="/r/create">Create Community</a>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <a href="/allCommunities">All Communities</a>
+          <Link href="/" className="flex items-center gap-2">
+            <Home className="h-4 w-4" /> Главная страница
+          </Link>
         </DropdownMenuItem>
 
-        {/* Collapsible Dropdown for My Communities (requires additional logic) */}
         <DropdownMenuItem asChild>
-          <button>My Communities</button>
+          <Link href="/allCommunities" className="flex items-center gap-2">
+            <FileStack className="h-4 w-4" /> Все сообщества
+          </Link>
         </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem>
+          <p className="text-sm text-gray-500">Мои сообщества</p>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem asChild>
+          <Link href="r/create" className="flex items-center gap-2">
+            <Plus className="h-4 w-4" /> Создать сообщество
+          </Link>
+        </DropdownMenuItem>
+
+        {subscribedCommunities.map((community) => (
+          <DropdownMenuItem asChild key={community.id}>
+            <Link
+              href={`/r/${community.name || community.name}`}
+              className="flex items-center gap-2 text-black hover:text-gray-900"
+            >
+              {community.name || "Unknown Community"}
+            </Link>
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
