@@ -18,9 +18,7 @@ import {
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import { Users } from "lucide-react";
 
-interface SearchBarProps {
-  className?: string;
-}
+interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   const [input, setInput] = useState<string>("");
@@ -66,8 +64,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
     <Command
       ref={commandRef}
-      className="relative rounded-lg border z-50 overflow-visible"
-      style={{ maxWidth: "100%", width: "800px" }}
+      className="relative rounded-lg border max-w-lg z-50 overflow-visible"
     >
       <CommandInput
         isLoading={isFetching}
@@ -82,7 +79,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
       {input.length > 0 && (
         <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">
-          {isFetched && <CommandEmpty>Ничего не найдено.</CommandEmpty>}
+          {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
           {(queryResults?.length ?? 0) > 0 ? (
             <CommandGroup heading="Communities">
               {queryResults?.map((subreddit) => (

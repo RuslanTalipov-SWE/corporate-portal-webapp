@@ -13,6 +13,7 @@ export default async function Home() {
   const session = await getAuthSession();
 
   if (!session) {
+    // Render a simple welcome message and a link to sign in for unauthorized users
     return (
       <div className="container mx-auto flex w-full flex-col items-center justify-start space-y-8 pt-8 sm:w-[400px]">
         <div className="flex flex-col items-center space-y-4">

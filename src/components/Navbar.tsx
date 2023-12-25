@@ -10,6 +10,7 @@ import { MainMenu } from "./MainMenu";
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
 
+  // If there is no user session, return null to render nothing
   if (!session?.user) {
     return null;
   }
@@ -24,13 +25,16 @@ const Navbar = async () => {
         </Link>
 
         <MainMenu />
+
+        {/* search bar */}
         <SearchBar />
 
+        {/* actions */}
         {session?.user ? (
           <UserAccountNav user={session.user} />
         ) : (
           <Link href="/sign-in" className={buttonVariants()}>
-            Войти
+            Sign In
           </Link>
         )}
       </div>

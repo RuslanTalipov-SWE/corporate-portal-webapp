@@ -52,13 +52,12 @@
 
 import { cn } from "@/lib/utils";
 import { signIn } from "next-auth/react";
-import React, { FC, useState } from "react";
+import * as React from "react";
+import { FC, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { useToast } from "@/hooks/use-toast";
 import { Icons } from "./Icons";
 import { Input } from "./ui/Input";
-import { signUp } from "@/app/actions/signUp";
-import { useRouter } from "next/router";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   mode: "signIn" | "signUp";
@@ -69,11 +68,10 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, mode, ...props }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [message, setMessage] = useState("");
-  const router = useRouter();
 
   const loginWithGoogle = async () => {
     setIsLoading(true);
+
     try {
       await signIn("google");
     } catch (error) {
@@ -92,30 +90,9 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, mode, ...props }) => {
     setIsLoading(true);
 
     try {
-      if (mode === "signIn") {
-        // Sign in logic
-        const result = await signIn("credentials", {
-          redirect: false,
-          email,
-          password,
-        });
-
-        if (result && !result.error) {
-          router.push("/"); // Redirect to home or dashboard
-        } else {
-          // Handle errors
-          toast({
-            title: "Authentication Failed",
-            description: result?.error || "Unknown error occurred",
-            variant: "destructive",
-          });
-        }
-      } else {
-        // Sign up logic
-        const signUpMessage = await signUp(email, password);
-        setMessage(signUpMessage);
-        // Optionally sign in the user after sign up
-      }
+      // You need to implement email/password authentication logic here
+      // For signIn: await signIn('credentials', { email, password });
+      // For signUp: Implement your sign-up logic (e.g., sending data to your API)
     } catch (error) {
       toast({
         title: "Error",
@@ -146,7 +123,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, mode, ...props }) => {
 
       <div className="relative flex items-center w-full">
         <div className="flex-grow border-t border-gray-300"></div>
-        <span className="mx-4 text-sm text-gray-600">или</span>
+        <span className="mx-4 text-sm text-gray-600 px-2">или</span>
         <div className="flex-grow border-t border-gray-300"></div>
       </div>
 
@@ -166,17 +143,11 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, mode, ...props }) => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full"
           />
-          <Button
-            isLoading={isLoading}
-            type="submit"
-            className="w-full mt-2"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="w-full mt-2">
             {mode === "signIn" ? "Login" : "Signup"}
           </Button>
         </div>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 };
