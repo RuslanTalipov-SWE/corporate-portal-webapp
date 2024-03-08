@@ -72,7 +72,10 @@ const SignUpForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+      <h1 className="font-bold text-3xl md:text-4xl text-center mb-6">
+        Регистрация
+      </h1>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="space-y-2">
           <FormField
             control={form.control}

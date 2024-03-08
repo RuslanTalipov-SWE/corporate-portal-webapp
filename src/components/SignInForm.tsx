@@ -58,14 +58,15 @@ const SignInForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-25">
+      <h1 className="font-bold text-3xl md:text-4xl text-center mb-6">Вход</h1>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="space-y-2">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Эл. почта</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="mail@example.com"
@@ -73,7 +74,7 @@ const SignInForm = () => {
                     style={{
                       fontSize: "14px",
                       padding: "10px",
-                      width: "50%",
+                      width: "100%",
                     }}
                   />
                 </FormControl>
@@ -86,11 +87,11 @@ const SignInForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Пароль</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder="Введите ваш пароль"
                     {...field}
                   />
                 </FormControl>
@@ -100,13 +101,13 @@ const SignInForm = () => {
           />
         </div>
         <Button className="w-full mt-6" type="submit">
-          Sign in
+          Войти
         </Button>
       </form>
       <p className="text-center text-sm text-gray-600 mt-2">
-        If you don&apos;t have an account, please&nbsp;
+        Нет аккаунта?&nbsp;
         <Link className="text-blue-500 hover:underline" href="/sign-up">
-          Sign up
+          Зарегистрироваться
         </Link>
       </p>
     </Form>
