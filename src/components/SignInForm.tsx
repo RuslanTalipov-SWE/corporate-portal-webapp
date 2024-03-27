@@ -42,7 +42,6 @@ const SignInForm = () => {
     const signInData = await signIn("credentials", {
       email: values.email,
       password: values.password,
-      redirect: false,
     });
 
     if (signInData?.error) {
