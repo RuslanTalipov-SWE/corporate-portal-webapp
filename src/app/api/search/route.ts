@@ -9,7 +9,9 @@ export async function GET(req: Request) {
   const results = await db.community.findMany({
     where: {
       name: {
-        startsWith: q,
+        // startsWith: q,
+        contains: q,
+        mode: "insensitive",
       },
     },
     include: {
@@ -20,3 +22,4 @@ export async function GET(req: Request) {
 
   return new Response(JSON.stringify(results));
 }
+
