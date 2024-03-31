@@ -130,6 +130,24 @@ const Layout = async ({
               {/* Delete Post Button */}
               <DeleteCommunity communityId={community.id} />
             </dl>
+            {/* Tech support sidebar */}
+            <div className="overflow-hidden h-fit border-gray-200 mt-4">
+              <dl className="px-6 py-4 text-sm leading-6 bg-white">
+                <div>
+                  <dd className="text-gray-700 font-bold">Техподдержка:</dd>
+                </div>
+                <div>
+                  <dt className="text-gray-500">
+                    Тел.: <strong>+7 (000)-000-00-00</strong>
+                  </dt>
+                </div>
+                <div>
+                  <dt className="text-gray-500">
+                    Email: <strong>techsupport@OFS.com</strong>
+                  </dt>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </div>
