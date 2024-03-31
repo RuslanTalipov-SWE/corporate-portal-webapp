@@ -16,20 +16,20 @@ const page = async () => {
   //   throw new Error("You need to be an admin.");
   // }
 
-  if (!session) {
-    // Render a simple welcome message and a link to sign in for unauthorized users
-    return (
-      <div className="container mx-auto flex w-full flex-col items-center justify-start space-y-8 pt-8 sm:w-[400px]">
-        <div className="flex flex-col items-center space-y-4">
-          <Icons.logo />
-        </div>
-        <h1 className="font-bold text-3xl text-center">Добро пожаловать</h1>
-        <Link href="/sign-in" className={buttonVariants()}>
-          Войти
-        </Link>
-      </div>
-    );
-  }
+  // if (!session) {
+  //   // Render a simple welcome message and a link to sign in for unauthorized users
+  //   return (
+  //     <div className="container mx-auto flex w-full flex-col items-center justify-start space-y-8 pt-8 sm:w-[400px]">
+  //       <div className="flex flex-col items-center space-y-4">
+  //         <Icons.logo />
+  //       </div>
+  //       <h1 className="font-bold text-3xl text-center">Добро пожаловать</h1>
+  //       <Link href="/sign-in" className={buttonVariants()}>
+  //         Войти
+  //       </Link>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
