@@ -10,10 +10,10 @@ import { MainMenu } from "./MainMenu";
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
 
-  // // If there is no user session, return null to render nothing
-  // if (!session?.user) {
-  //   return null;
-  // }
+  // If there is no user session, return null to render nothing
+  if (!session?.user) {
+    return null;
+  }
 
   return (
     <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
